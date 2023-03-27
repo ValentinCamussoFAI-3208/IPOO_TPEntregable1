@@ -7,7 +7,7 @@ class Viaje {
     private $maxPasajeros;
     private $pasajeros = array();
 
-    // Método constructor, no esta $pasajeros porque puede haber un viaje que todavia no tenga pasajeros.
+    // Método constructor, no está $pasajeros porque puede haber un viaje que todavia no tenga pasajeros.
     public function __construct($codigoViaje, $destinoViaje,$maxPasajerosViaje) {
         $this->codigo = $codigoViaje;
         $this->destino = $destinoViaje;
@@ -84,7 +84,7 @@ class Viaje {
                 $pasajerosAux = array_values($pasajerosAux);
                 // Modifica el arreglo de pasajeros con el nuevo arreglo sin el pasajero eliminado
                 $this->setPasajeros($pasajerosAux);
-                // Se le asigna true a $encontro asi no para el while
+                // Se le asigna true a $encontro asi se detiene el 'while'
                 $encontro = true;
             }
             $i++;
@@ -103,6 +103,7 @@ class Viaje {
         $pasajerosAux = $this->getPasajeros();
         $encontro = false;
         $i = 0;
+        // 'While' que busca al pasajero mediante el número de documento
         while ($i < count($pasajerosAux) && !$encontro) {
             if ($pasajerosAux[$i]['numero de documento'] == $documento) {
                 // Modifica el nombre y apellido del pasajero

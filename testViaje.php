@@ -57,7 +57,7 @@
                 $documentoP = trim(fgets(STDIN));
                 // Agrega al pasajero en caso de que el pasajero todavia no exista
                 if ($viaje->agregarPasajero($nombreP, $apellidoP, $documentoP)) {
-                    echo "El pasajero que esta intentando añadir ya existe.\n";
+                    echo "Ya existe un pasajero con el documento N°" . $documentoP . "\n";
                 } else {
                     echo "Pasajero añadido correctamente.\n";
                 }
@@ -68,7 +68,7 @@
                 $documentoP = trim(fgets(STDIN));
                 // Elimina el pasajero en caso de encontrarlo
                 if ($viaje->eliminarPasajero($documentoP) == false) {
-                    echo "No hay ningún pasajero con el número de documento " . $documentoP . "\n";
+                    echo "No hay ningún pasajero con el documento N°" . $documentoP . "\n";
                 } else {
                     echo "Pasajero eliminado correctamente.\n";
                 }
@@ -83,7 +83,7 @@
                 $apellidoP = trim(fgets(STDIN));
                 // Modifica los datos del pasajero en caso de encontrarlo
                 if ($viaje->modificarPasajero($nombreP, $apellidoP, $documentoP) == false) {
-                    echo "No hay ningún pasajero con el número de documento " . $documentoP . "\n";
+                    echo "No hay ningún pasajero con el documento N°" . $documentoP . "\n";
                 } else {
                     echo "Pasajero modificado correctamente.\n";
                 }

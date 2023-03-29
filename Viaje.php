@@ -8,7 +8,7 @@ class Viaje {
     private $pasajeros = array();
 
     // Método constructor, no está $pasajeros porque puede haber un viaje que todavia no tenga pasajeros.
-    public function __construct($codigoViaje, $destinoViaje,$maxPasajerosViaje) {
+    public function __construct($codigoViaje, $destinoViaje, $maxPasajerosViaje) {
         $this->codigo = $codigoViaje;
         $this->destino = $destinoViaje;
         $this->maxPasajeros = $maxPasajerosViaje;
@@ -118,6 +118,27 @@ class Viaje {
         }
         // Se retorna $encontro asi en el programa principal se da a entender al usuario si pudo o no hacerse la modificación
         return $encontro;
+    }
+    /** Esta función __toString retorna una cadena de texto con la información del viaje
+     * @return STRING
+     */
+    public function __toString() {
+        // Se guardan y concatenan los datos del viaje
+        $salida = "Código del viaje: " . $this->getCodigo() . "\n";
+        $salida .= "Destino del viaje: " . $this->getDestino() . "\n";
+        $salida .= "Cantidad de pasajeros máximo del viaje: " . $this->getMaxPasajeros() . "\n";
+        $arrayPasajeros = $this->getPasajeros();
+        // Cuando $arrayPasajeros no esta vacio, ejecuta el 'for' que concatenan los datos de todos los pasajeros del viaje.
+        if (count($arrayPasajeros) != 0) {
+            for ($i = 0; $i < count($arrayPasajeros); $i++) {
+                $salida .= "\nPasajero N°" . ($i+1) . "\n";
+                $salida .= "Nombre: " . $arrayPasajeros[$i]['nombre'] . "\n";
+                $salida .= "Apellido: " . $arrayPasajeros[$i]['apellido'] . "\n";
+                $salida .= "Número de documento: " . $arrayPasajeros[$i]['numero de documento'] . "\n";
+            }
+            $salida .=  "\n";
+        }
+        return $salida;
     }
 }
 ?>

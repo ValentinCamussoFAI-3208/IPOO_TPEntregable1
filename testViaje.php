@@ -3,7 +3,7 @@
     include 'Viaje.php';
     // Se crea el objeto
     $viaje = new Viaje("", "", 0);
-    // Se asigna true a %sigue asi el while se ejecuta 
+    // Se asigna true a $sigue asi el while se ejecuta 
     $sigue = true;
     // Mientras la variable $sigue sea verdadera se ejecuta el while
     while ($sigue) {
@@ -89,24 +89,9 @@
                 }
                 break;
             case 6:
-                // Se muestran los datos del viaje
-                echo "Código del viaje: " . $viaje->getCodigo() . "\n";
-                echo "Destino del viaje: " . $viaje->getDestino() . "\n";
-                echo "Cantidad de pasajeros máximo del viaje: " . $viaje->getMaxPasajeros() . "\n";
-                $arrayPasajeros = $viaje->getPasajeros();
-                // Cuando $arrayPasajeros no esta vacio, ejecuta el 'for' que muestra los datos de todos los pasajeros del viaje.
-                if (count($arrayPasajeros) != 0) {
-                    for ($i = 0; $i < count($arrayPasajeros); $i++) {
-                        echo "\nPasajero N°" . ($i+1) . "\n";
-                        echo "Nombre: " . $arrayPasajeros[$i]['nombre'] . "\n";
-                        echo "Apellido: " . $arrayPasajeros[$i]['apellido'] . "\n";
-                        echo "Número de documento: " . $arrayPasajeros[$i]['numero de documento'] . "\n";
-                    }
-                    echo "\n";
-                }
+                echo $viaje;
                 break;
-            // En caso de que el usuario ingrese un número que no este entre 1 y 6 inclusive, se le asigna falso a $sigue asi el 'while' se detiene
-            default:
+            default: // En caso de que el usuario ingrese un número que no este entre 1 y 6 inclusive, se le asigna falso a $sigue asi el 'while' se detiene
                 $sigue = false;
                 break;
         }

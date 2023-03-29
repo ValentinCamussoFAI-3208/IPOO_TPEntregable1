@@ -55,11 +55,16 @@
                 $apellidoP = trim(fgets(STDIN));
                 echo "Ingrese el número de documento del pasajero: ";
                 $documentoP = trim(fgets(STDIN));
-                // Agrega al pasajero en caso de que el pasajero todavia no exista
-                if ($viaje->agregarPasajero($nombreP, $apellidoP, $documentoP)) {
-                    echo "Ya existe un pasajero con el documento N°" . $documentoP . "\n";
+                // Verifica que no se pase la capacidad máxima del viaje
+                if ($viaje->getCantidadPasajeros() < $viaje->getMaxPasajeros()) {
+                    // Verifica si el pasajero ya existe y esta guardado en el arreglo de pasajeros
+                    if ($viaje->agregarPasajero($nombreP, $apellidoP, $documentoP)) {
+                        echo "Ya existe un pasajero con el documento N°" . $documentoP . "\n";
+                    } else {
+                        echo "Pasajero añadido correctamente.\n";
+                    }
                 } else {
-                    echo "Pasajero añadido correctamente.\n";
+                    echo "Se ha alcanzado la capacidad máxima del viaje, no se pueden agregar más pasajeros.\n";
                 }
                 break;
             case 4:

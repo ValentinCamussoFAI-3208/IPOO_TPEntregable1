@@ -6,6 +6,7 @@ class Viaje {
     private $destino;
     private $maxPasajeros;
     private $pasajeros = array();
+    private $cantidadPasajeros;
 
     // Método constructor, no está $pasajeros porque puede haber un viaje que todavia no tenga pasajeros.
     public function __construct($codigoViaje, $destinoViaje, $maxPasajerosViaje) {
@@ -27,6 +28,9 @@ class Viaje {
     public function setPasajeros($pasajerosViaje) {
         $this->pasajeros = $pasajerosViaje;
     }
+    public function setCantidadPasajeros($cantidadPasajerosViaje) {
+        $this->cantidadPasajeros = $cantidadPasajerosViaje;
+    }
     // Métodos get
     public function getCodigo() {
         return $this->codigo;
@@ -40,6 +44,9 @@ class Viaje {
     public function getPasajeros() {
         return $this->pasajeros;
     }
+    public function getCantidadPasajeros() {
+        return $this->cantidadPasajeros;
+    }
 
     /** Esta función agrega a un pasajero dado al array de pasajeros.
      * @param STRING $nombre
@@ -49,6 +56,7 @@ class Viaje {
      */
     public function agregarPasajero($nombre, $apellido, $documento) {
         $pasajerosAux = $this->getPasajeros();
+        $pasajerosActuales = $this->getCantidadPasajeros();
         $encontro = false;
         $i = 0;
         // while que verifica si el pasajero ya esta en el arreglo de pasajeros
@@ -62,7 +70,9 @@ class Viaje {
         if ($encontro == false) {
             $arrayAux = array("nombre" => $nombre, "apellido" => $apellido, "numero de documento" => $documento);
             array_push($this->pasajeros, $arrayAux); // Agrega al final los datos del nuevo pasajero
+            $pasajerosActuales++;
         }
+        $this->setCantidadPasajeros($pasajerosActuales);
         // Se retorna $encontro para hacerle saber al usuario si el pasajero ya esta en el arreglo
         return $encontro;
     }
@@ -73,6 +83,7 @@ class Viaje {
      */
     public function eliminarPasajero($documento) {
         $pasajerosAux = $this->getPasajeros();
+        $pasajerosActuales = $this->getCantidadPasajeros();
         $encontro = false;
         $i = 0;
         // 'While' que busca al pasajero mediante el número de documento
@@ -86,9 +97,11 @@ class Viaje {
                 $this->setPasajeros($pasajerosAux);
                 // Se le asigna true a $encontro asi se detiene el 'while'
                 $encontro = true;
+                $pasajerosActuales--;
             }
             $i++;
         }
+        $this->setCantidadPasajeros($pasajerosActuales);
         // Se retorna $encontro asi en el programa principal se da a entender al usuario si pudo o no hacerse la eliminación
         return $encontro;
     }
